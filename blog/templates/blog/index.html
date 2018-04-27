@@ -1,0 +1,27 @@
+{% extends 'myfirstgame/base.html' %}
+
+{% block content %}
+<div class="content container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Come back soon when we add more functionality</h2>
+            <p>This is a <em>choose your own adventure game</em>.</p>
+
+            <form method="POST" class="player-form">{% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="save btn btn-default">Submit</button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3 id="player-listings">List of players in order of latest who played</h3>
+            <ul class="player-list">
+            {% for player in players %}
+                <li><span class="player">{{ player.name }}</span> - Game Over on <em>{{ player.game_end }}</em></li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
